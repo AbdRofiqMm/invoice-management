@@ -90,3 +90,15 @@ ALTER TABLE payment
   ADD KEY FKptriq88d7e8io9mhri8p10cq0 (id_virtual_account);
 ALTER TABLE payment
   ADD CONSTRAINT FKptriq88d7e8io9mhri8p10cq0 FOREIGN KEY (id_virtual_account) REFERENCES virtual_account (id);
+
+CREATE TABLE invoice_type_provider (
+  id_invoice_type varchar(255) NOT NULL,
+  id_payment_provider varchar(255) NOT NULL
+);
+
+ALTER TABLE invoice_type_provider
+  ADD PRIMARY KEY (id_invoice_type,id_payment_provider),
+  ADD KEY FKdue5pwwyn091emo8u1e5fkh7k (id_payment_provider);
+ALTER TABLE invoice_type_provider
+  ADD CONSTRAINT FKdue5pwwyn091emo8u1e5fkh7k FOREIGN KEY (id_payment_provider) REFERENCES payment_provider (id),
+  ADD CONSTRAINT FKfsym0hpqp4d8llimqvtn1iih1 FOREIGN KEY (id_invoice_type) REFERENCES invoice_type (id);
